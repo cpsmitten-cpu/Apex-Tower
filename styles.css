@@ -407,3 +407,11 @@ footer{
 @media (max-width: 760px){
   .tourGrid{ grid-template-columns: 1fr; }
 }
+
+/* --- Tour Planner button: force it away from Chatling --- */
+.tourFab{
+  left: 18px !important;
+  right: auto !important;
+  bottom: 18px !important;
+  z-index: 2147483647 !important; /* max-ish z-index */
+}
