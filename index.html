@@ -6,479 +6,14 @@
   <meta name="theme-color" content="#0b0f14" />
   <meta name="description" content="Apex Tower — a modern, boutique office tower designed for focus, flow, and a refined arrival experience." />
   <title>Apex Tower</title>
-
-  <style>
-    :root{
-      /* Real estate palette: calm, dark, minimal */
-      --bg: #0b0f14;
-      --bg2:#0a0d12;
-      --card: rgba(255,255,255,.05);
-      --card2: rgba(255,255,255,.07);
-      --border: rgba(255,255,255,.10);
-      --text: rgba(255,255,255,.92);
-      --muted: rgba(255,255,255,.72);
-      --muted2: rgba(255,255,255,.56);
-
-      /* One tasteful accent only */
-      --accent: #c7a46a; /* warm brass */
-      --shadow: 0 18px 60px rgba(0,0,0,.55);
-      --shadow2: 0 10px 28px rgba(0,0,0,.35);
-
-      --radius: 16px;
-      --radius2: 22px;
-      --max: 1160px;
-    }
-
-    * { box-sizing: border-box; }
-    html, body { height: 100%; }
-    body{
-      margin:0;
-      background: radial-gradient(900px 650px at 40% -10%, rgba(199,164,106,.10), transparent 55%),
-                  linear-gradient(180deg, var(--bg), var(--bg2));
-      color: var(--text);
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
-      overflow-x:hidden;
-    }
-
-    a{ color: inherit; text-decoration:none; }
-    .container{ width: min(var(--max), calc(100% - 48px)); margin: 0 auto; }
-
-    /* Header */
-    header{
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      background: rgba(11,15,20,.72);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(255,255,255,.06);
-    }
-    .nav{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap: 16px;
-      padding: 14px 0;
-    }
-    .brand{
-      display:flex;
-      align-items:center;
-      gap: 10px;
-      font-weight: 650;
-      letter-spacing: .25px;
-    }
-    .brandMark{
-      width: 10px; height: 10px;
-      border-radius: 99px;
-      background: var(--accent);
-      box-shadow: 0 0 0 5px rgba(199,164,106,.14);
-      flex: none;
-    }
-    .brand small{
-      display:block;
-      color: var(--muted2);
-      font-weight: 520;
-      letter-spacing:.4px;
-      margin-top: -2px;
-    }
-    nav.links{
-      display:flex;
-      gap: 10px;
-      color: var(--muted);
-      font-size: 14px;
-    }
-    nav.links a{
-      padding: 10px 10px;
-      border-radius: 12px;
-      transition: background .2s ease, color .2s ease;
-    }
-    nav.links a:hover{
-      background: rgba(255,255,255,.06);
-      color: var(--text);
-    }
-
-    .ctaRow{ display:flex; align-items:center; gap: 10px; }
-    .btn{
-      display:inline-flex; align-items:center; gap: 10px;
-      padding: 10px 14px;
-      border-radius: 14px;
-      border: 1px solid rgba(255,255,255,.14);
-      background: rgba(255,255,255,.04);
-      color: var(--text);
-      font-weight: 600;
-      font-size: 14px;
-      cursor:pointer;
-      user-select:none;
-      transition: transform .18s ease, background .2s ease, border-color .2s ease;
-      box-shadow: var(--shadow2);
-      white-space: nowrap;
-    }
-    .btn:hover{ transform: translateY(-1px); background: rgba(255,255,255,.06); border-color: rgba(255,255,255,.22); }
-    .btn.primary{
-      border-color: rgba(199,164,106,.45);
-      background: rgba(199,164,106,.12);
-    }
-    .btn .dot{
-      width: 7px; height: 7px; border-radius: 99px;
-      background: var(--accent);
-      box-shadow: 0 0 0 4px rgba(199,164,106,.14);
-    }
-
-    .hamburger{ display:none; }
-
-    /* Hero with background render */
-    .hero{
-      position: relative;
-      padding: 74px 0 34px;
-      overflow: hidden;
-      border-bottom: 1px solid rgba(255,255,255,.06);
-    }
-    .hero::before{
-      content:"";
-      position:absolute; inset:-50px;
-      background-image: url("assets/apex-tower-render.png");
-      background-size: cover;
-      background-position: center;
-      filter: saturate(1.02) contrast(1.02);
-      opacity: .50;
-      transform: scale(1.02);
-      pointer-events:none;
-    }
-    .hero::after{
-      content:"";
-      position:absolute; inset:0;
-      /* calmer, real-estate “photo overlay” */
-      background: linear-gradient(180deg, rgba(11,15,20,.45), rgba(11,15,20,.92) 70%, rgba(11,15,20,.98));
-      pointer-events:none;
-    }
-    .hero .container{ position:relative; z-index: 1; }
-
-    .heroGrid{
-      display:grid;
-      grid-template-columns: 1.2fr .8fr;
-      gap: 26px;
-      align-items: end;
-    }
-
-    .eyebrow{
-      display:inline-flex;
-      align-items:center;
-      gap: 10px;
-      padding: 9px 12px;
-      border: 1px solid rgba(255,255,255,.12);
-      background: rgba(0,0,0,.18);
-      border-radius: 999px;
-      color: var(--muted);
-      font-size: 13px;
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-    }
-    .eyebrow i{
-      width: 7px; height: 7px; border-radius: 99px;
-      background: var(--accent);
-      box-shadow: 0 0 0 4px rgba(199,164,106,.14);
-    }
-    h1{
-      margin: 14px 0 10px;
-      font-size: clamp(40px, 4.6vw, 62px);
-      line-height: 1.03;
-      letter-spacing: -1px;
-      text-shadow: 0 14px 45px rgba(0,0,0,.6);
-    }
-    .sub{
-      margin: 0 0 18px;
-      color: rgba(255,255,255,.78);
-      line-height: 1.6;
-      font-size: 16px;
-      max-width: 60ch;
-      text-shadow: 0 10px 32px rgba(0,0,0,.55);
-    }
-    .heroActions{
-      display:flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      margin-top: 14px;
-    }
-
-    /* Simple property facts panel */
-    .facts{
-      border-radius: var(--radius2);
-      border: 1px solid rgba(255,255,255,.12);
-      background: rgba(0,0,0,.22);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      box-shadow: var(--shadow);
-      overflow:hidden;
-    }
-    .factsHeader{
-      padding: 14px 14px 10px;
-      border-bottom: 1px solid rgba(255,255,255,.08);
-    }
-    .factsHeader .title{
-      font-weight: 650;
-      letter-spacing: .2px;
-    }
-    .factsHeader .note{
-      margin-top: 6px;
-      color: var(--muted2);
-      font-size: 12px;
-      line-height: 1.5;
-    }
-    .factsGrid{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0;
-    }
-    .fact{
-      padding: 12px 14px;
-      border-top: 1px solid rgba(255,255,255,.06);
-      border-right: 1px solid rgba(255,255,255,.06);
-    }
-    .fact:nth-child(2n){ border-right: none; }
-    .fact .k{ color: var(--muted2); font-size: 12px; }
-    .fact .v{ margin-top: 6px; font-weight: 650; letter-spacing: -.2px; }
-    .fact .s{ margin-top: 6px; color: var(--muted); font-size: 12px; line-height: 1.4; }
-
-    /* Sections */
-    section{ padding: 46px 0; }
-    .sectionHead{
-      display:flex;
-      justify-content:space-between;
-      align-items:flex-end;
-      gap: 18px;
-      margin-bottom: 18px;
-    }
-    h2{
-      margin: 0;
-      font-size: 26px;
-      letter-spacing: -.5px;
-    }
-    .sectionHead p{
-      margin: 0;
-      color: var(--muted);
-      max-width: 72ch;
-      line-height: 1.6;
-      font-size: 14px;
-    }
-
-    .grid3{
-      display:grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 14px;
-    }
-    .card{
-      border-radius: var(--radius);
-      border: 1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.04);
-      box-shadow: var(--shadow2);
-      padding: 16px;
-      transition: transform .2s ease, background .2s ease, border-color .2s ease;
-    }
-    .card:hover{
-      transform: translateY(-2px);
-      background: rgba(255,255,255,.055);
-      border-color: rgba(255,255,255,.16);
-    }
-    .card h3{
-      margin: 0 0 8px;
-      font-size: 16px;
-      letter-spacing: -.2px;
-    }
-    .card p{
-      margin: 0;
-      color: var(--muted);
-      font-size: 13px;
-      line-height: 1.6;
-    }
-    .pillTag{
-      display:inline-flex;
-      align-items:center;
-      gap: 8px;
-      margin-bottom: 10px;
-      padding: 7px 10px;
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,.10);
-      background: rgba(0,0,0,.18);
-      color: var(--muted2);
-      font-size: 12px;
-    }
-    .pillTag b{
-      width: 6px; height: 6px; border-radius: 99px;
-      background: var(--accent);
-      display:inline-block;
-      box-shadow: 0 0 0 3px rgba(199,164,106,.14);
-    }
-
-    /* Band */
-    .band{
-      border-radius: var(--radius2);
-      border: 1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.035);
-      box-shadow: var(--shadow);
-      overflow:hidden;
-    }
-    .bandInner{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0;
-    }
-    .bandCol{
-      padding: 18px;
-      border-right: 1px solid rgba(255,255,255,.07);
-    }
-    .bandCol:last-child{ border-right:none; }
-    .bandCol ul{ margin: 0; padding-left: 18px; color: var(--muted); line-height: 1.8; font-size: 13px; }
-    .bandCol li{ margin: 6px 0; }
-    .bandCol h3{ margin: 0 0 10px; font-size: 18px; letter-spacing: -.2px; }
-
-    /* FAQ */
-    .faq{ display:grid; gap: 10px; }
-    details{
-      border-radius: 14px;
-      border: 1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.04);
-      box-shadow: var(--shadow2);
-      overflow:hidden;
-    }
-    summary{
-      list-style:none;
-      cursor:pointer;
-      padding: 14px 16px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap: 14px;
-      user-select:none;
-    }
-    summary::-webkit-details-marker{ display:none; }
-    summary .q{ font-weight: 650; font-size: 14px; letter-spacing: -.2px; }
-    summary .chev{
-      width: 34px; height: 34px;
-      border-radius: 12px;
-      border: 1px solid rgba(255,255,255,.10);
-      background: rgba(0,0,0,.18);
-      display:grid; place-items:center;
-      transition: transform .2s ease;
-      flex: none;
-      color: rgba(255,255,255,.8);
-    }
-    details[open] summary .chev{ transform: rotate(180deg); }
-    .answer{
-      padding: 0 16px 14px;
-      color: var(--muted);
-      line-height: 1.7;
-      font-size: 13px;
-    }
-    .answer code{
-      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono","Courier New", monospace;
-      font-size: 12px;
-      color: rgba(255,255,255,.92);
-      background: rgba(0,0,0,.22);
-      border: 1px solid rgba(255,255,255,.10);
-      padding: 2px 6px;
-      border-radius: 8px;
-      white-space: nowrap;
-    }
-
-    /* Form inputs */
-    input, textarea{
-      padding: 12px 12px;
-      border-radius: 14px;
-      border: 1px solid rgba(255,255,255,.14);
-      background: rgba(0,0,0,.20);
-      color: var(--text);
-      outline: none;
-    }
-    input:focus, textarea:focus{
-      border-color: rgba(199,164,106,.40);
-      box-shadow: 0 0 0 4px rgba(199,164,106,.12);
-    }
-
-    /* Footer */
-    footer{
-      padding: 28px 0 40px;
-      border-top: 1px solid rgba(255,255,255,.06);
-      background: rgba(0,0,0,.18);
-    }
-    .foot{
-      display:flex; justify-content:space-between; gap: 18px;
-      flex-wrap: wrap;
-      color: var(--muted);
-      font-size: 13px;
-      line-height: 1.6;
-    }
-    .foot strong{ color: rgba(255,255,255,.86); }
-    .foot .cols{ display:flex; gap: 10px; flex-wrap: wrap; }
-    .foot a{
-      display:inline-block;
-      padding: 8px 10px;
-      border-radius: 12px;
-      border: 1px solid rgba(255,255,255,.08);
-      background: rgba(255,255,255,.03);
-    }
-    .foot a:hover{ border-color: rgba(255,255,255,.14); background: rgba(255,255,255,.05); }
-
-    /* Reveal animation */
-    .fadeUp{ opacity: 0; transform: translateY(10px); transition: opacity .55s ease, transform .55s ease; }
-    .fadeUp.show{ opacity: 1; transform: translateY(0); }
-
-    /* Responsive */
-    @media (max-width: 980px){
-      .heroGrid{ grid-template-columns: 1fr; }
-      .grid3{ grid-template-columns: 1fr; }
-      .bandInner{ grid-template-columns: 1fr; }
-      .bandCol{ border-right:none; border-bottom: 1px solid rgba(255,255,255,.07); }
-      .bandCol:last-child{ border-bottom:none; }
-
-      nav.links{ display:none; }
-      .hamburger{
-        display:inline-flex;
-        align-items:center; justify-content:center;
-        width: 44px; height: 44px;
-        border-radius: 14px;
-        border: 1px solid rgba(255,255,255,.12);
-        background: rgba(255,255,255,.05);
-        box-shadow: var(--shadow2);
-        cursor:pointer;
-      }
-      .hamburger span{
-        width: 18px; height: 2px; background: rgba(255,255,255,.82);
-        position: relative; display:block; border-radius: 99px;
-      }
-      .hamburger span::before, .hamburger span::after{
-        content:"";
-        position:absolute; left:0;
-        width: 18px; height: 2px; background: rgba(255,255,255,.82);
-        border-radius: 99px;
-      }
-      .hamburger span::before{ top: -6px; }
-      .hamburger span::after{ top: 6px; }
-
-      .mobileNav{
-        display:none;
-        padding: 8px 0 16px;
-      }
-      .mobileNav.open{ display:block; }
-      .mobileNav a{
-        display:block;
-        padding: 12px 0;
-        color: var(--muted);
-        border-top: 1px solid rgba(255,255,255,.06);
-      }
-      .mobileNav a:hover{ color: var(--text); }
-    }
-
-    @media (prefers-reduced-motion: reduce){
-      .btn, .card, .fadeUp{ transition:none !important; }
-    }
-  </style>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 
 <body>
   <header>
     <div class="container">
       <div class="nav">
-        <a class="brand" href="#top" aria-label="Apex Tower home">
+        <a class="brand" href="index.html" aria-label="Apex Tower home">
           <span class="brandMark" aria-hidden="true"></span>
           <div>
             Apex Tower
@@ -488,10 +23,9 @@
 
         <nav class="links" aria-label="Primary navigation">
           <a href="#overview">Overview</a>
-          <a href="#amenities">Amenities</a>
-          <a href="#rooms">Conference rooms</a>
+          <a href="spaces.html">Spaces</a>
           <a href="#visit">Visitor guide</a>
-          <a href="#faq">FAQ</a>
+          <a href="#contact">Tours</a>
         </nav>
 
         <div class="ctaRow">
@@ -505,31 +39,38 @@
 
       <div class="mobileNav" id="mobileNav" aria-label="Mobile navigation">
         <a href="#overview">Overview</a>
-        <a href="#amenities">Amenities</a>
-        <a href="#rooms">Conference rooms</a>
+        <a href="spaces.html">Spaces</a>
         <a href="#visit">Visitor guide</a>
-        <a href="#faq">FAQ</a>
+        <a href="#contact">Tours</a>
       </div>
     </div>
   </header>
 
   <main id="top">
-    <!-- HERO -->
+    <!-- HERO (VIDEO BACKGROUND) -->
     <section class="hero" aria-label="Apex Tower hero">
+      <div class="heroMedia" aria-hidden="true">
+        <!-- Video first (best); image as fallback -->
+        <video autoplay muted playsinline loop preload="auto" poster="assets/poster.jpg">
+          <source src="assets/apex-hero.webm" type="video/webm" />
+          <source src="assets/apex-hero.mp4" type="video/mp4" />
+        </video>
+      </div>
+      <div class="heroOverlay" aria-hidden="true"></div>
+
       <div class="container">
         <div class="heroGrid">
           <div class="fadeUp">
             <div class="eyebrow"><i aria-hidden="true"></i> A refined workplace, designed to feel effortless</div>
             <h1>Elevate your day at Apex Tower.</h1>
             <p class="sub">
-              A modern, boutique-grade tower where arrival is calm, work is focused, and meetings feel
-              polished—every single time.
+              A modern, boutique-grade tower where arrival is calm, work is focused, and meetings feel polished.
             </p>
 
             <div class="heroActions">
               <a class="btn primary" href="#contact"><span class="dot"></span> Book a tour</a>
-              <a class="btn" href="#overview"><span class="dot"></span> View overview</a>
-              <a class="btn" href="#rooms"><span class="dot"></span> Conference rooms</a>
+              <a class="btn" href="spaces.html"><span class="dot"></span> Explore spaces</a>
+              <a class="btn" href="#overview"><span class="dot"></span> Overview</a>
             </div>
           </div>
 
@@ -538,7 +79,6 @@
               <div class="title">Property highlights</div>
               <div class="note">A simple, hospitality-forward experience—built for modern teams.</div>
             </div>
-
             <div class="factsGrid">
               <div class="fact">
                 <div class="k">Positioning</div>
@@ -551,14 +91,14 @@
                 <div class="s">Visitor-ready support.</div>
               </div>
               <div class="fact">
-                <div class="k">Food & beverage</div>
-                <div class="v">Summit Market</div>
-                <div class="s">Floor 4 café & cafeteria.</div>
-              </div>
-              <div class="fact">
                 <div class="k">Work modes</div>
                 <div class="v">Quiet + collaboration</div>
-                <div class="s">Phone booths, zones.</div>
+                <div class="s">Phone booths, focus zones.</div>
+              </div>
+              <div class="fact">
+                <div class="k">Meetings</div>
+                <div class="v">Peak-named rooms</div>
+                <div class="s">Designed for clarity.</div>
               </div>
             </div>
           </aside>
@@ -572,7 +112,7 @@
         <div class="sectionHead">
           <div>
             <h2>Overview</h2>
-            <p>Apex Tower is intentionally scaled: premium feel, simple circulation, and spaces that support deep work and high-quality meetings.</p>
+            <p>Apex Tower is intentionally scaled: premium feel, simple circulation, and spaces that support deep work and decisive meetings.</p>
           </div>
         </div>
 
@@ -585,103 +125,17 @@
           <div class="card fadeUp">
             <div class="pillTag"><b></b> Focus</div>
             <h3>Work that stays uninterrupted</h3>
-            <p>Quiet zones, soundproof phone booths, and a layout built to reduce noise and friction.</p>
+            <p>Quiet zones and phone booths—so momentum doesn’t get broken by noise.</p>
           </div>
           <div class="card fadeUp">
-            <div class="pillTag"><b></b> Meetings</div>
-            <h3>Spaces that land the moment</h3>
-            <p>Conference rooms named for peaks—designed for clarity, presence, and decisive conversations.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- AMENITIES -->
-    <section id="amenities">
-      <div class="container">
-        <div class="sectionHead">
-          <div>
-            <h2>Amenities</h2>
-            <p>Useful, polished, and thoughtfully placed—everything you want, nothing you don’t.</p>
+            <div class="pillTag"><b></b> Spaces</div>
+            <h3>Conference rooms that land</h3>
+            <p>Explore the full spaces page for conference rooms and collaboration zones.</p>
           </div>
         </div>
 
-        <div class="grid3">
-          <div class="card fadeUp">
-            <div class="pillTag"><b></b> Every floor</div>
-            <h3>Hydration stations</h3>
-            <p>Filtered still + sparkling water in the kitchenette on every floor.</p>
-          </div>
-          <div class="card fadeUp">
-            <div class="pillTag"><b></b> Break rooms</div>
-            <h3>Espresso</h3>
-            <p>Espresso machines in shared break areas. Lobby coffee shop available for purchase.</p>
-          </div>
-          <div class="card fadeUp">
-            <div class="pillTag"><b></b> Floor 4</div>
-            <h3>Summit Market</h3>
-            <p>On-site cafeteria: breakfast 7–10am, lunch 11am–2pm.</p>
-          </div>
-          <div class="card fadeUp">
-            <div class="pillTag"><b></b> Lobby</div>
-            <h3>Coat & luggage storage</h3>
-            <p>Secure coat check and luggage storage behind the reception desk.</p>
-          </div>
-          <div class="card fadeUp">
-            <div class="pillTag"><b></b> North corridor</div>
-            <h3>Soundproof phone booths</h3>
-            <p>First-come, first-served quiet call spaces along the windows.</p>
-          </div>
-          <div class="card fadeUp">
-            <div class="pillTag"><b></b> Parking</div>
-            <h3>EV charging</h3>
-            <p>ChargePoint stations on Level P2, Row C—first-come, first-served.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- CONFERENCE ROOMS -->
-    <section id="rooms">
-      <div class="container">
-        <div class="sectionHead">
-          <div>
-            <h2>Conference rooms</h2>
-            <p>Six signature rooms—distinct energy, consistent polish.</p>
-          </div>
-        </div>
-
-        <div class="grid3">
-          <div class="card fadeUp">
-            <div class="pillTag"><b></b> Floor 2</div>
-            <h3>Denali</h3>
-            <p>Fast team syncs and kickoffs. Convenient to lobby flow.</p>
-          </div>
-          <div class="card fadeUp">
-            <div class="pillTag"><b></b> Floor 3</div>
-            <h3>Rainier</h3>
-            <p>Client-ready space for crisp storytelling and calm confidence.</p>
-          </div>
-          <div class="card fadeUp">
-            <div class="pillTag"><b></b> Floor 5</div>
-            <h3>Whitney</h3>
-            <p>Workshop-friendly room—ideal for demos and working sessions.</p>
-          </div>
-          <div class="card fadeUp">
-            <div class="pillTag"><b></b> Floor 12</div>
-            <h3>Fuji</h3>
-            <p>Built for iteration: whiteboards, momentum, and decisions.</p>
-          </div>
-          <div class="card fadeUp">
-            <div class="pillTag"><b></b> Floor 15</div>
-            <h3>Everest</h3>
-            <p>Executive-grade room for high-stakes alignment and reviews.</p>
-          </div>
-          <div class="card fadeUp">
-            <div class="pillTag"><b></b> Floor 18</div>
-            <h3>Kilimanjaro</h3>
-            <p>Composed space for negotiations, approvals, and final sign-off.</p>
-          </div>
+        <div style="margin-top:14px;">
+          <a class="btn" href="spaces.html"><span class="dot"></span> Go to Spaces page</a>
         </div>
       </div>
     </section>
@@ -701,18 +155,16 @@
             <div class="bandCol">
               <h3>Arrival & access</h3>
               <ul>
-                <li><strong>Guest Wi-Fi:</strong> <code style="white-space:nowrap">Apex_Guest</code> · password <code style="white-space:nowrap">SummitView2026!</code></li>
+                <li><strong>Guest Wi-Fi:</strong> <code>Apex_Guest</code> · password <code>SummitView2026!</code></li>
                 <li><strong>Parking validation:</strong> Main St. Garage—validate at the front desk before leaving</li>
-                <li><strong>Overflow parking:</strong> 300 W 4th Street (~5 min walk)</li>
                 <li><strong>After-hours:</strong> main doors lock at 6:00 PM; escort needed to exit via night door</li>
               </ul>
             </div>
             <div class="bandCol">
               <h3>Inside the tower</h3>
               <ul>
-                <li><strong>Restrooms:</strong> every floor (central core); plus single-stall options (East Wing)</li>
-                <li><strong>Printing:</strong> email docs to <code style="white-space:nowrap">print@apextower.com</code> for a 6-digit release code</li>
-                <li><strong>Room availability:</strong> check Room Wizard tablets outside each door</li>
+                <li><strong>Printing:</strong> email docs to <code>print@apextower.com</code> for a 6-digit release code</li>
+                <li><strong>Room availability:</strong> check tablets outside each door</li>
                 <li><strong>Emergency exits:</strong> Stairwells A or B—do not use elevators</li>
               </ul>
             </div>
@@ -725,135 +177,35 @@
       </div>
     </section>
 
-    <!-- FAQ -->
-    <section id="faq">
-      <div class="container">
-        <div class="sectionHead">
-          <div>
-            <h2>FAQ</h2>
-            <p>Quick answers that keep the day moving.</p>
-          </div>
-        </div>
-
-        <div class="faq">
-          <details class="fadeUp">
-            <summary>
-              <span class="q">What’s the Wi-Fi password?</span>
-              <span class="chev" aria-hidden="true">⌄</span>
-            </summary>
-            <div class="answer">
-              Connect to <code>Apex_Guest</code> with password <code>SummitView2026!</code>, then accept the terms on the splash page.
-            </div>
-          </details>
-
-          <details class="fadeUp">
-            <summary>
-              <span class="q">Do you validate parking?</span>
-              <span class="chev" aria-hidden="true">⌄</span>
-            </summary>
-            <div class="answer">
-              Yes—parking is validated for the Main St. Garage. Present your ticket at the front desk before you leave.
-            </div>
-          </details>
-
-          <details class="fadeUp">
-            <summary>
-              <span class="q">Is there EV charging?</span>
-              <span class="chev" aria-hidden="true">⌄</span>
-            </summary>
-            <div class="answer">
-              Yes—ChargePoint stations on Level P2, Row C. First-come, first-served.
-            </div>
-          </details>
-
-          <details class="fadeUp">
-            <summary>
-              <span class="q">Where can I take a quiet call?</span>
-              <span class="chev" aria-hidden="true">⌄</span>
-            </summary>
-            <div class="answer">
-              Soundproof phone booths are located along the windows in the North Corridor. First-come, first-served.
-            </div>
-          </details>
-
-          <details class="fadeUp">
-            <summary>
-              <span class="q">How do I print something?</span>
-              <span class="chev" aria-hidden="true">⌄</span>
-            </summary>
-            <div class="answer">
-              Email your document to <code>print@apextower.com</code>. You’ll receive a 6-digit release code to use at any printer.
-            </div>
-          </details>
-
-          <details class="fadeUp">
-            <summary>
-              <span class="q">What time does the building close?</span>
-              <span class="chev" aria-hidden="true">⌄</span>
-            </summary>
-            <div class="answer">
-              Main doors lock at 6:00 PM. If you’re inside after hours, you’ll need an escort to exit via the night door.
-            </div>
-          </details>
-        </div>
-      </div>
-    </section>
-
     <!-- CONTACT -->
     <section id="contact">
       <div class="container">
         <div class="sectionHead">
           <div>
             <h2>Request a tour</h2>
-            <p>Tell us what you’re looking for. This demo generates a prefilled email locally—no data is sent anywhere.</p>
+            <p>For the assignment, this can remain a simple mailto link or a static form.</p>
           </div>
         </div>
 
-        <div class="band fadeUp" role="region" aria-label="Tour request form">
+        <div class="band fadeUp">
           <div class="bandInner">
             <div class="bandCol">
-              <h3>Send a note (demo form)</h3>
-
-              <form id="tourForm" style="display:grid; gap:10px; margin-top: 10px;">
-                <label style="display:grid; gap:6px;">
-                  <span style="color: var(--muted2); font-size: 12px;">Name</span>
-                  <input required name="name" placeholder="Your name" />
-                </label>
-
-                <label style="display:grid; gap:6px;">
-                  <span style="color: var(--muted2); font-size: 12px;">Email</span>
-                  <input required type="email" name="email" placeholder="you@company.com" />
-                </label>
-
-                <label style="display:grid; gap:6px;">
-                  <span style="color: var(--muted2); font-size: 12px;">What are you touring for?</span>
-                  <textarea required name="message" rows="4" placeholder="Team size, timing, must-haves…"></textarea>
-                </label>
-
-                <div style="display:flex; gap:10px; flex-wrap: wrap; align-items:center;">
-                  <button class="btn primary" type="submit"><span class="dot"></span> Generate email</button>
-                  <button class="btn" type="button" id="copyBtn"><span class="dot"></span> Copy</button>
-                  <span id="statusMsg" style="color: var(--muted2); font-size: 12px;"></span>
-                </div>
-
-                <textarea id="output"
-                  style="margin-top: 6px;"
-                  rows="7" readonly placeholder="Your message will appear here…"></textarea>
-              </form>
+              <h3>Tour request</h3>
+              <p style="color:var(--muted); margin:0 0 12px; line-height:1.7; font-size:13px;">
+                Click below to open your email client with a prefilled tour request.
+              </p>
+              <a class="btn primary" href="mailto:tours@apextower.com?subject=Apex%20Tower%20Tour%20Request&body=Hi%20Apex%20Tower%20team%2C%0A%0AI'd%20love%20to%20schedule%20a%20tour.%0A%0ACompany%3A%0ATeam%20size%3A%0APreferred%20dates%3A%0AMust-haves%3A%0A%0AThanks%2C">
+                <span class="dot"></span> Email tour request
+              </a>
             </div>
-
             <div class="bandCol">
-              <h3>Onsite support</h3>
-              <ul>
-                <li><strong>Front desk:</strong> lobby concierge can support parking validation, storage, and access questions</li>
-                <li><strong>Rooms:</strong> check tablets outside each door for availability</li>
-                <li><strong>Boardroom:</strong> penthouse-level access requires escort</li>
-                <li><strong>Policy:</strong> non-smoking campus; designated area outside North Exit</li>
-              </ul>
+              <h3>Need the second page?</h3>
+              <p style="color:var(--muted); margin:0; line-height:1.7; font-size:13px;">
+                Your “Spaces” page is at <code>spaces.html</code> and is linked in the nav.
+              </p>
             </div>
           </div>
         </div>
-
       </div>
     </section>
   </main>
@@ -862,125 +214,31 @@
     <div class="container">
       <div class="foot">
         <div>
-          <div class="brand" style="margin-bottom: 10px;">
+          <div class="brand" style="margin-bottom:10px;">
             <span class="brandMark" aria-hidden="true"></span>
             <div>
               <strong>Apex Tower</strong><br/>
-              <span style="color: var(--muted2);">A fictional property concept landing page.</span>
+              <span style="color: var(--muted2);">Fictional property concept.</span>
             </div>
           </div>
-          <div style="max-width: 72ch;">
-            Single-file HTML for easy GitHub Pages hosting. Replace the hero image at
-            <code style="white-space:nowrap">assets/apex-tower-render.png</code> to update the look instantly.
+          <div style="max-width:72ch;">
+            Multi-page static site designed for GitHub Pages hosting.
           </div>
         </div>
 
         <div class="cols" aria-label="Footer links">
-          <a href="#top">Top</a>
-          <a href="#overview">Overview</a>
-          <a href="#rooms">Conference rooms</a>
+          <a href="index.html">Home</a>
+          <a href="spaces.html">Spaces</a>
           <a href="#visit">Visitor guide</a>
         </div>
       </div>
 
-      <div style="margin-top: 18px; color: rgba(255,255,255,.42); font-size: 12px;">
+      <div style="margin-top:18px; color: rgba(255,255,255,.42); font-size:12px;">
         © <span id="year"></span> Apex Tower. All details are fictional.
       </div>
     </div>
   </footer>
 
-  <script>
-    // ---- Mobile nav ----
-    const hamburger = document.getElementById("hamburger");
-    const mobileNav = document.getElementById("mobileNav");
-    hamburger?.addEventListener("click", () => {
-      const isOpen = mobileNav.classList.toggle("open");
-      hamburger.setAttribute("aria-expanded", String(isOpen));
-    });
-    mobileNav?.querySelectorAll("a").forEach(a => a.addEventListener("click", () => {
-      mobileNav.classList.remove("open");
-      hamburger.setAttribute("aria-expanded", "false");
-    }));
-
-    // ---- Smooth scroll ----
-    document.querySelectorAll('a[href^="#"]').forEach(a => {
-      a.addEventListener("click", (e) => {
-        const id = a.getAttribute("href");
-        if (!id || id === "#") return;
-        const el = document.querySelector(id);
-        if (!el) return;
-        e.preventDefault();
-        el.scrollIntoView({ behavior: "smooth", block: "start" });
-      });
-    });
-
-    // ---- Reveal animations ----
-    const prefersReduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (!prefersReduced) {
-      const io = new IntersectionObserver((entries) => {
-        entries.forEach(en => {
-          if (en.isIntersecting) en.target.classList.add("show");
-        });
-      }, { threshold: 0.12 });
-      document.querySelectorAll(".fadeUp").forEach(el => io.observe(el));
-    } else {
-      document.querySelectorAll(".fadeUp").forEach(el => el.classList.add("show"));
-    }
-
-    // ---- Tour request “Generate email” (local only) ----
-    const form = document.getElementById("tourForm");
-    const output = document.getElementById("output");
-    const statusMsg = document.getElementById("statusMsg");
-    const copyBtn = document.getElementById("copyBtn");
-
-    function setStatus(msg) {
-      if (!statusMsg) return;
-      statusMsg.textContent = msg;
-      if (msg) setTimeout(() => statusMsg.textContent = "", 2400);
-    }
-
-    form?.addEventListener("submit", (e) => {
-      e.preventDefault();
-      const fd = new FormData(form);
-      const name = String(fd.get("name") || "").trim();
-      const email = String(fd.get("email") || "").trim();
-      const message = String(fd.get("message") || "").trim();
-
-      const subject = "Apex Tower tour request";
-      const body =
-`Subject: ${subject}
-
-Hi Apex Tower team,
-
-My name is ${name}. I'd love to request a tour of Apex Tower.
-
-What I'm looking for:
-${message}
-
-Best contact email: ${email}
-
-Thanks,
-${name}`;
-
-      output.value = body;
-      setStatus("Email generated.");
-    });
-
-    copyBtn?.addEventListener("click", async () => {
-      if (!output.value) { setStatus("Generate the email first."); return; }
-      try {
-        await navigator.clipboard.writeText(output.value);
-        setStatus("Copied.");
-      } catch {
-        output.focus();
-        output.select();
-        document.execCommand("copy");
-        setStatus("Copied.");
-      }
-    });
-
-    // ---- Footer year ----
-    document.getElementById("year").textContent = new Date().getFullYear();
-  </script>
+  <script src="app.js"></script>
 </body>
 </html>
