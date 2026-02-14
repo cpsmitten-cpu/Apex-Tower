@@ -241,6 +241,75 @@
 
 <script src="app.js"></script>
 
+<!-- Tour Planner (X-factor) -->
+<button class="tourFab" id="tourFab" aria-label="Open Tour Planner">
+  Plan my visit
+</button>
+
+<div class="tourModal" id="tourModal" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Apex Tower Tour Planner">
+  <div class="tourSheet" role="document">
+    <div class="tourHeader">
+      <div>
+        <div class="tourTitle">Tour Planner</div>
+        <div class="tourSubtitle">Build a 60–90 minute visit plan + add it to your calendar.</div>
+      </div>
+      <button class="tourClose" id="tourClose" aria-label="Close Tour Planner">✕</button>
+    </div>
+
+    <div class="tourGrid">
+      <label class="tourField">
+        <span>Arrival window</span>
+        <select id="tpArrival">
+          <option value="Morning (9:00 AM)">Morning (9:00 AM)</option>
+          <option value="Midday (12:00 PM)">Midday (12:00 PM)</option>
+          <option value="Afternoon (3:00 PM)">Afternoon (3:00 PM)</option>
+        </select>
+      </label>
+
+      <label class="tourField">
+        <span>Visit goal</span>
+        <select id="tpGoal">
+          <option value="Tour the building">Tour the building</option>
+          <option value="Client meeting">Client meeting</option>
+          <option value="Deep work day">Deep work day</option>
+          <option value="Team collaboration day">Team collaboration day</option>
+        </select>
+      </label>
+
+      <label class="tourField">
+        <span>Getting here</span>
+        <select id="tpMode">
+          <option value="Driving">Driving</option>
+          <option value="Walking">Walking</option>
+          <option value="Rideshare">Rideshare</option>
+        </select>
+      </label>
+
+      <label class="tourField">
+        <span>Add-ons</span>
+        <div class="tourChecks">
+          <label><input type="checkbox" id="tpConf" checked /> Conference room preview</label>
+          <label><input type="checkbox" id="tpCafe" checked /> Summit Market stop</label>
+          <label><input type="checkbox" id="tpQuiet" /> Quiet zone / phone booth</label>
+        </div>
+      </label>
+    </div>
+
+    <div class="tourActions">
+      <button class="btn primary" id="tpGenerate"><span class="dot"></span> Generate itinerary</button>
+      <button class="btn" id="tpCopy"><span class="dot"></span> Copy</button>
+      <button class="btn" id="tpIcs"><span class="dot"></span> Download calendar (.ics)</button>
+      <span class="tourStatus" id="tpStatus"></span>
+    </div>
+
+    <textarea class="tourOutput" id="tpOutput" rows="10" readonly placeholder="Your itinerary will appear here…"></textarea>
+
+    <div class="tourNote">
+      Tip: The calendar file downloads locally (no data sent). You can attach it to an email or drop it into Google/Outlook Calendar.
+    </div>
+  </div>
+</div>
+
 <!-- Chatling chatbot -->
 <script>
   window.chtlConfig = { chatbotId: "7177966228" };
