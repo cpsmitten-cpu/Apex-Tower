@@ -277,7 +277,8 @@ footer{
    ========================= */
 .tourFab{
   position: fixed;
-  right: 18px;
+  left: 18px;
+  right: auto;
   bottom: 18px;
   z-index: 80;
   padding: 12px 14px;
